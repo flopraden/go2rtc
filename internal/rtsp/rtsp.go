@@ -51,7 +51,8 @@ func Init() {
 		return
 	}
 
-	_, Port, _ = net.SplitHostPort(address)
+	Host, Port, _ = net.SplitHostPort(address)
+	ListenAddress = address
 
 	log.Info().Str("addr", address).Msg("[rtsp] listen")
 
@@ -84,6 +85,8 @@ func HandleFunc(handler Handler) {
 }
 
 var Port string
+var Host string
+var ListenAddress string
 
 // internal
 
