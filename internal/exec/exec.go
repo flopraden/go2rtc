@@ -61,7 +61,7 @@ func execHandle(rawURL string) (core.Producer, error) {
 
 			sum := md5.Sum([]byte(rawURL))
 			path = "/" + hex.EncodeToString(sum[:])
-			args[i] = "rtsp://127.0.0.1:" + rtsp.Port + path
+			args[i] = "rtsp://" + rtsp.ListenAddress + path
 			break
 		}
 	}
