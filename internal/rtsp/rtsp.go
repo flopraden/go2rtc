@@ -53,6 +53,9 @@ func Init() {
 
 	Host, Port, _ = net.SplitHostPort(address)
 	ListenAddress = address
+	if conf.Mod.Username != "" {
+		Auth = conf.Mod.Username + ":" + conf.Mod.Password
+	}
 
 	log.Info().Str("addr", address).Msg("[rtsp] listen")
 
@@ -87,6 +90,7 @@ func HandleFunc(handler Handler) {
 var Port string
 var Host string
 var ListenAddress string
+var Auth string
 
 // internal
 

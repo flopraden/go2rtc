@@ -61,7 +61,11 @@ func execHandle(rawURL string) (core.Producer, error) {
 
 			sum := md5.Sum([]byte(rawURL))
 			path = "/" + hex.EncodeToString(sum[:])
-			args[i] = "rtsp://" + rtsp.ListenAddress + path
+			var rtspAuth string
+			if rtsp.Auth != "" {
+				rtspAuth = rtsp.Auth + "@"
+			}
+			args[i] = "rtsp://" + rtspAuth + rtsp.ListenAddress + path
 			break
 		}
 	}

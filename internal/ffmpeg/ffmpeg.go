@@ -177,7 +177,11 @@ func parseArgs(s string) *ffmpeg.Args {
 			args.Input = "-i " + s
 		}
 	} else if streams.Get(s) != nil {
-		s = "rtsp://" + rtsp.ListenAddress + "/" + s
+		var rtspAuth string
+		if rtsp.Auth != "" {
+			rtspAuth = rtsp.Auth + "@"
+		}
+		s = "rtsp://" + rtspAuth + rtsp.ListenAddress + "/" + s
 		switch {
 		case args.Video > 0 && args.Audio == 0:
 			s += "?video"
